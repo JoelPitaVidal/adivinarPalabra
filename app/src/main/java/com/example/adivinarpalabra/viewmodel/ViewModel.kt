@@ -38,34 +38,34 @@ class ViewModel:ViewModel() {
     }
 
 
-    fun setPalabraDir() {
+    fun añadirPalabraAleatoria() {
         estadoLiveData.value = Estados.GENERANDO
         var numeroAleatorioDiccionario = random.nextInt(1, 21)
-        var palabraDir = checkPalabra(numeroAleatorioDiccionario)
-        var sinonimoDir = checkSinonimo(palabraDir)
+        var palabraDir = comprobarPalabra(numeroAleatorioDiccionario)
+        var sinonimoDir = comprobarSinonimo(palabraDir)
 
         Log.d("Comprobando", palabraDir)
         Log.d("Comprobando", sinonimoDir)
         estadoLiveData.value = Estados.ADIVINANDO
     }
 
-    fun addPalabraJugador(palabraJugador: String, palabraMaquina: String) {
+    fun escribirPalabra(palabraJugador: String, palabraMaquina: String) {
         Log.d("palabraJ", getPalabraJugador())
         Log.d("Comprobando", palabraJugador)
         Log.d("Comprobando", palabraMaquina)
-        winOrLose(palabraJugador, palabraMaquina)
+        comprobarResultado(palabraJugador, palabraMaquina)
     }
 
-    private fun checkPalabra(id: Int): String {
+    private fun comprobarPalabra(id: Int): String {
         val palabra = Diccionario.entries.find { it.id == id }
         if (palabra != null) {
-            setPalabraMaquina(palabra.nombre)
+            setPalabraDiccionario(palabra.nombre)
             return palabra.nombre
         }
         return ""
     }
 
-    fun checkSinonimo(palabra: String): String {
+    fun comprobarSinonimo(palabra: String): String {
         val sinoninoDir = Diccionario.entries.find { it.nombre == palabra }
         if (sinoninoDir != null) {
             setSinonimo(sinoninoDir.sinonimo)
@@ -74,7 +74,7 @@ class ViewModel:ViewModel() {
         return ""
     }
 
-    fun winOrLose(palabraJugador: String, palabraMaquina: String) {
+    fun comprobarResultado(palabraJugador: String, palabraMaquina: String) {
         if (palabraJugador == palabraMaquina) {
             Log.d("GanarOPerder", "Has ganado")
             setRondas()
@@ -84,12 +84,12 @@ class ViewModel:ViewModel() {
             estadoLiveData.value = Estados.INICIO
         } else {
             setFallos()
-            auxWinOrLose(getAciertos(), getFallos())
+            comprobarAciertosYFallos(getAciertos(), getFallos())
         }
 
     }
 
-    private fun auxWinOrLose(aciertos: Int, fallos: Int) {
+    private fun comprobarAciertosYFallos(aciertos: Int, fallos: Int) {
         if (aciertos == 0 && fallos == 3) {
             estadoLiveData.value = Estados.INICIO
             Log.d("GanarOPerder", "Has perdido")
@@ -114,8 +114,8 @@ class ViewModel:ViewModel() {
         }
     }
 
-    fun setPalabraMaquina(palabraMaquina: String) {
-        Datos.palabra = palabraMaquina
+    fun setPalabraDiccionario(palabraDiccionario: String) {
+        Datos.palabra = palabraDiccionario
     }
 
     fun setSinonimo(sinonimoDir: String) {

@@ -84,13 +84,13 @@ fun ShowRondas(rondas:Int){
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 30.dp, start = 115.dp)
+            .padding(top = 80.dp, start = 140.dp)
     ) {
 
-        Text(text = "Rondas: $rondas" ,
+        Text(text = "Ronda: $rondas" ,
             fontSize = 25.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White)
+            color = Color.Black)
 
     }
 
@@ -101,13 +101,13 @@ fun ShowSinonimo(sinonimo:String){
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 46.dp, start = 90.dp)
+            .padding(top = 30.dp, start = 140.dp)
     ) {
 
         Text(text = "Sinonimo: $sinonimo" ,
             fontSize = 23.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White)
+            color = Color.Black)
 
     }
 
@@ -126,7 +126,7 @@ fun TextNombreEscribir(text: MutableState<String>, viewModel: ViewModel) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 20.dp, start = 16.dp)
+            .padding(top = 20.dp, start = 45.dp)
     ) {
     }
     TextField(
@@ -155,15 +155,15 @@ fun ButtonEnter(viewModel: ViewModel, palabraJugador:String, palabraMaquina:Stri
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 20.dp, start = 90.dp)) {
+            .padding(top = 20.dp, start = 115.dp)) {
         Button(
             enabled = _activo,
             onClick = {
 
-                viewModel.addPalabraJugador(palabraJugador, palabraMaquina)
+                viewModel.escribirPalabra(palabraJugador, palabraMaquina)
             },
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Magenta,
+                containerColor = Color.Black,
             ),
             modifier = Modifier
                 .padding(top = 40.dp)
@@ -171,7 +171,7 @@ fun ButtonEnter(viewModel: ViewModel, palabraJugador:String, palabraMaquina:Stri
                 .clip(CircleShape)
         ){
             Text(
-                text = "Enter",
+                text = "Corregir",
                 color = Color.White,
                 fontSize = 20.sp
             )
@@ -184,13 +184,14 @@ fun ShowAciertos(aciertos:Int){
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 80.dp, start = 30.dp)
+            .padding(top = 80.dp, start = 45.dp)
+
     ) {
 
         Text(text = "Aciertos: $aciertos" ,
             fontSize = 25.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White)
+            color = Color.Black)
 
     }
 
@@ -201,13 +202,13 @@ fun ShowFallos(fallos:Int){
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 80.dp, start = 30.dp)
+            .padding(top = 80.dp, start = 70.dp)
     ) {
 
         Text(text = "Fallos: $fallos" ,
             fontSize = 25.sp,
             fontWeight = FontWeight.Bold,
-            color = Color.White)
+            color = Color.Black)
 
     }
 
@@ -225,15 +226,15 @@ fun ButtonStart(viewModel: ViewModel){
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(top = 5.dp, start = 90.dp)) {
+            .padding(top = 5.dp, start = 110.dp)) {
         Button(
             enabled = _activo,
             onClick = {
-                viewModel.setPalabraDir()
+                viewModel.añadirPalabraAleatoria()
             },
             shape = RoundedCornerShape(16.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Red,
+                containerColor = Color.Black,
             ),
             modifier = Modifier
                 .padding(top = 80.dp)
